@@ -1,5 +1,5 @@
-from  brownie import Contract, accounts
-from    brownie_tokens import MintableForkToken
+from brownie import Contract, accounts
+from brownie_tokens import MintableForkToken
 
 def main():
     dai_addr = "0x6b175474e89094c44da98b954eedeac495271d0f"
