@@ -13,3 +13,18 @@ def isolate(fn_isolation):
 @pytest.fixture(scope="module")
 def margarita(Token, accounts):
     return Token.deploy("Margarita", "MARG", 18, 1e21, {'from': accounts[0]})
+
+# Fixtures are declared by prepending the function with the fixture decorator
+# scope "module" declares that every time new module is open this fixture will be rerun
+    # There can be diferent scopes of fixtures
+    #     function: (default) fixture destroyed at end of test
+    #     class: fixture destroyed at last test in class
+    #     module: fixture destroyed at last test in module
+    #     session: fixture destroyed at end of test session
+@pytest.fixture(scope="module")
+def alice(accounts):
+    return accounts[0]
+
+@pytest.fixture(scope="module")
+def bob(accounts):
+    return accounts[1]
