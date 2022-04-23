@@ -1,6 +1,7 @@
 import pytest
 from conftest import load_contract
 
+# Pass parameters to your test by calling the decorator
 @pytest.mark.parametrize('i', range(10))
 def test_3pool_redeposit(alice, registry, tripool_funded, tripool_lp_token, i):
     # Load Pool for a particular value i offset
@@ -14,8 +15,8 @@ def test_3pool_redeposit(alice, registry, tripool_funded, tripool_lp_token, i):
 
     # Make the transfer, require [0, 1e21]
     amounts = [0] * (registry.get_n_coins(_pool)[0])
-    _offset = registry.get_coin_indices(_pool, tripool_lp_token, _complement)
-    amounts[_offset[0]] = _amout
+    _offsets = registry.get_coin_indices(_pool, tripool_lp_token, _complement)
+    amounts[_offsets[0]] = _amout
     _pool.add_liquidity(amounts, 0, {'from': alice})
 
     # Verify the transfer, by looking at Alice's lp_token balance
